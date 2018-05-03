@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindow extends JFrame {
 
@@ -98,11 +100,31 @@ public class MainWindow extends JFrame {
 		passwordField = new JPasswordField();
 		contentPane.add(passwordField, "12, 10, 3, 1, fill, default");
 		
-		JButton btnNewButton = new JButton("New button");
-		contentPane.add(btnNewButton, "12, 12");
+		JButton loginButton = new JButton("Login");
+		loginButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				loginClicked();
+			}
+		});
+		contentPane.add(loginButton, "12, 12");
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		contentPane.add(btnNewButton_1, "14, 12");
+		JButton createUserButton_1 = new JButton("Create New User");
+		createUserButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				createUserClicked();
+			}
+		});
+		contentPane.add(createUserButton_1, "14, 12");
+	}
+	
+	protected void createUserClicked() {
+		// TODO Auto-generated method stub
+		
 	}
 
+	private void loginClicked() {
+		// TODO Auto-generated method stub
+	}
 }

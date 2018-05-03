@@ -12,6 +12,8 @@ enum DeliveryMethod{
 }
 
 public class Sale {
+	
+	/* Fields */
 	private Client Buyer;
 	private MediaFormat[] Products;
 	private BigDecimal TotalPrice;
@@ -20,13 +22,52 @@ public class Sale {
 	private PaymentMethod PayMethod;
 	private DeliveryMethod DelMethod;
 	
+	/* Getters */
+	public Client getBuyer() {
+		return Buyer;
+	}
+
+	public MediaFormat[] getProducts() {
+		return Products;
+	}
+
+	public BigDecimal getTotalPrice() {
+		return TotalPrice;
+	}
+
+	public Date getSaleDate() {
+		return SaleDate;
+	}
+
+	public InetAddress getClientIP() {
+		return ClientIP;
+	}
+
+	public PaymentMethod getPayMethod() {
+		return PayMethod;
+	}
+
+	public DeliveryMethod getDelMethod() {
+		return DelMethod;
+	}
+
+	/* Constructor */
 	Sale(Client buyer, MediaFormat[] products, InetAddress ip, PaymentMethod payMethod, DeliveryMethod delMethod){
 		Buyer=buyer;
 		Products=products;
 		ClientIP=ip;
-		payMethod=payMethod;
+		PayMethod=payMethod;
 		DelMethod=delMethod;
 		SaleDate=new Date();
 		SaleDate.setTime(Instant.now().toEpochMilli());
+	}
+	
+	/* Functions */
+	void GetFromDB() {
+		
+	}
+	
+	void SaveToDB() {
+		
 	}
 }

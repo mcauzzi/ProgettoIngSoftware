@@ -19,7 +19,7 @@ final class MediaType{
 
 public class MediaFormat {
 	
-	/*Fields*/
+	/* Fields */
 	private UUID UniCode;
 	private MediaType Type;
 	private String Title;
@@ -38,7 +38,7 @@ public class MediaFormat {
 	private String[] Instruments;
 	private ImageIcon AlbumCover;
 	
-	/*Getters*/
+	/* Getters */
 	public UUID getUniCode() {
 		return UniCode;
 	}
@@ -76,11 +76,7 @@ public class MediaFormat {
 		return AlbumCover;
 	}
 	
-	/*Constructor*/
-	MediaFormat(){
-		UniCode=UniCode.randomUUID();	
-	}
-	
+	/* Constructor */
 	MediaFormat(String title, String mediaType, String[] songTitles, Date date, 
 				String artist, String description, String genre, 
 				Musician[] musList, ImageIcon albumCover, String[] instruments){
@@ -97,6 +93,12 @@ public class MediaFormat {
 		AlbumCover=albumCover;
 	}
 	
+	/* Functions */
+	void GetFromDB() {
+		
+	}
 	
-	
+	void SaveToDB() {
+		
+	}
 }
