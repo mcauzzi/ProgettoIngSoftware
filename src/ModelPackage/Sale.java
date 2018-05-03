@@ -1,3 +1,4 @@
+package ModelPackage;
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.time.Instant;
@@ -63,11 +64,4 @@ public class Sale {
 	}
 	
 	/* Functions */
-	void GetFromDB() {
-		
-	}
-	
-	void SaveToDB() {
-		
-	}
 }

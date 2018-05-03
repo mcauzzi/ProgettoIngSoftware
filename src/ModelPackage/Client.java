@@ -1,3 +1,4 @@
+package ModelPackage;
 
 public class Client {
 	
@@ -45,11 +46,4 @@ public class Client {
 	}
 	
 	/* Functions */
-	void GetFromDB() {
-		
-	}
-	
-	void SaveToDB() {
-		
-	}
 }

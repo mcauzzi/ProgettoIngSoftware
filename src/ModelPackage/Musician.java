@@ -1,3 +1,4 @@
+package ModelPackage;
 import java.util.Date;
 
 public class Musician {
@@ -26,11 +27,4 @@ public class Musician {
 	}
 
 	/* Functions */
-	void GetFromDB() {
-		
-	}
-	
-	void SaveToDB() {
-		
-	}
 }
