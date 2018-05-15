@@ -62,6 +62,17 @@ public class DBManager {
 		}
 	}
 	
+	void customQuery(String query) {
+		try {
+			st=c.createStatement();
+			st.execute(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	void remove(String DBName, List<List> tuples) {
 		
 	}
