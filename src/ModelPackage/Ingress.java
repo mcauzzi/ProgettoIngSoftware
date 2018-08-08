@@ -8,7 +8,14 @@ public class Ingress {
 	
 	/* Fields */
 	private UUID UniCode;
-	private Date date;
-	private List<Article> IngressArticles;
+	private Date Date;
+	private ArticleList IngressArticles;
 	private List<String> ArticlePos;
+	
+	public Ingress(UUID uniCode, ArticleList ingressArticles, Date date, List<String> articlePos) {
+		UniCode=uniCode;
+		Date=date;
+		IngressArticles=ingressArticles;
+		ArticlePos=articlePos;
+	}
 }

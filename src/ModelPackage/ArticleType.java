@@ -10,4 +10,11 @@ public class ArticleType {
 	String Sport;
 	List<String> Materials;
 	
+	ArticleType(String name, String description, String sport, List<String> materials){
+		Name=name;
+		Description=description;
+		Sport=sport;
+		Materials=materials;
+	}
+	
 }

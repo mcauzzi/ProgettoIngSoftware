@@ -8,9 +8,15 @@ public class Egress {
 	/* Fields */
 	private Date EgressDate;
 	private String DeliveryNote;
-	private List<Article> EgressArticles;
+	private ArticleList EgressArticles;
 	private Shop Receiver;
 	private String Shipper;
 	
-	
+	public Egress(Date date, String note, ArticleList articles, Shop receiver, String shipper) {
+		EgressDate=date;
+		DeliveryNote=note;
+		EgressArticles=articles;
+		Receiver=receiver;
+		Shipper=shipper;
+	}
 }
