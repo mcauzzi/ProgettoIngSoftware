@@ -1,9 +1,6 @@
 package ModelPackage;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class DBManager {
 		 try {
 	         Class.forName("org.postgresql.Driver");
 	         c = DriverManager
-	            .getConnection("jdbc:postgresql://localhost:5433/ShopDB",
+                     .getConnection("jdbc:postgresql://192.168.1.42:5433/ShopDB",
 	            "IngSof", "prova123");
 	      } catch (Exception e) {
 	         e.printStackTrace();
