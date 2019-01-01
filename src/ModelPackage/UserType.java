@@ -1,5 +1,5 @@
 package ModelPackage;
 
 public enum UserType {
-	Warehouse_Worker, Manager, Store_Manager
+    warehouse_worker, manager, store_manager
 }
