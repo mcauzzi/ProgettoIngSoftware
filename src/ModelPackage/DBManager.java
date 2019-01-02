@@ -21,7 +21,8 @@ public class DBManager {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+        System.out.println("Opened database successfully\n Table List:");
+
         try {
             DatabaseMetaData dbmd = c.getMetaData();
             try (ResultSet tables = dbmd.getTables(null, null, "%", new String[]{"TABLE"})) {
@@ -32,8 +33,6 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void insert(String DBName, List<List> tuples) {
@@ -51,17 +50,19 @@ public class DBManager {
             }
 
             query += ") VALUES ";
+            StringBuilder queryBuilder = new StringBuilder(query);
             for (int i = 0; i < tuples.size(); i++) {
-                query += "(";
+                queryBuilder.append("(");
                 for (int j = 0; j < tuples.get(i).size(); j++) {
                     if (j != tuples.get(i).size() - 1)
-                        query += "'" + tuples.get(i).get(j) + "'" + ", ";
+                        queryBuilder.append("'").append(tuples.get(i).get(j)).append("'").append(", ");
                     else
-                        query += "'" + tuples.get(i).get(j) + "'";
+                        queryBuilder.append("'").append(tuples.get(i).get(j)).append("'");
                 }
                 if (i != tuples.size() - 1)
-                    query += "),\n";
+                    queryBuilder.append("),\n");
             }
+            query = queryBuilder.toString();
             query += ");\n";
             st.executeUpdate(query);
         } catch (SQLException e) {
@@ -69,13 +70,16 @@ public class DBManager {
         }
     }
 
-    void customQuery(String query) {
+
+    public ResultSet customQuery(String query) {
         try {
             st = c.createStatement();
             st.execute(query);
+            return st.getResultSet();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }
 
     }

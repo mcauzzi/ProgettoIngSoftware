@@ -1,8 +1,13 @@
 import Controller.EventManager;
+import Controller.InvalidPasswordException;
+import Controller.InvalidUserException;
+import ModelPackage.UserType;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class LoginForm {
     private JPanel panel1;
@@ -27,7 +32,27 @@ public class LoginForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                man.loginClick(userNameField.getText(), passwordField1.getPassword());
+                String acctType = null;
+                try {
+                    acctType = EventManager.loginClick(userNameField.getText(), passwordField1.getPassword());
+                } catch (Exception | InvalidUserException | InvalidPasswordException e1) {
+                    showMessageDialog(null, e1.getMessage());
+                    return;
+                }
+
+                switch (UserType.valueOf(acctType).name()) {
+                    case "warehouse_worker":
+
+                        break;
+                    case "manager":
+
+                        break;
+                    case "store_manager":
+
+                        break;
+                    default:
+                        showMessageDialog(null, "Tipo Di Utente Non Riconosciuto");
+                }
             }
         });
 
@@ -36,7 +61,7 @@ public class LoginForm {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 addForm = new AddUserForm();
-                addForm.main(null);
+                AddUserForm.main(null);
             }
         });
     }
