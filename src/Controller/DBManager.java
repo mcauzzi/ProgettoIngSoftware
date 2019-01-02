@@ -1,4 +1,4 @@
-package ModelPackage;
+package Controller;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,13 +35,14 @@ public class DBManager {
         }
     }
 
-    public void insert(String DBName, List<List> tuples) {
+    //Inserts tuples into the provided tablename
+    public void insert(String tableName, List<List> tuples) {
         try {
             List<String> colNames = new ArrayList();
             st = c.createStatement();
 
-            String query = "INSERT INTO " + DBName + " (";
-            colNames = getColumnNames(DBName);
+            String query = "INSERT INTO " + tableName + " (";
+            colNames = getColumnNames(tableName);
             for (int i = 0; i < colNames.size(); i++) {
                 if (i != colNames.size() - 1)
                     query += colNames.get(i) + ", ";
@@ -70,7 +71,7 @@ public class DBManager {
         }
     }
 
-
+    //Executes a custom query and returns its ResultSet
     public ResultSet customQuery(String query) {
         try {
             st = c.createStatement();
@@ -88,12 +89,13 @@ public class DBManager {
 
     }
 
-    List getColumnNames(String DBName) {
+    //Returns the column names of the given table
+    List getColumnNames(String tableName) {
         List<String> colNames = new ArrayList();
 
         try {
             st = c.createStatement();
-            rs = st.executeQuery("SELECT * FROM " + DBName);
+            rs = st.executeQuery("SELECT * FROM " + tableName);
             for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                 colNames.add(rs.getMetaData().getColumnName(i));
             }
@@ -105,6 +107,7 @@ public class DBManager {
         return colNames;
     }
 
+    //Get all the tuples of given table
     public <T> List get(String TabName) {
         List<ArrayList> tuples = new ArrayList<ArrayList>();
 

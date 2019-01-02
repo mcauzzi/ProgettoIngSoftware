@@ -1,3 +1,5 @@
+package View;
+
 import Controller.EventManager;
 import ModelPackage.UserType;
 
@@ -14,11 +16,12 @@ public class AddUserForm {
     private JComboBox userTypeBox;
     private JLabel typeLabel;
     private EventManager eventMan = new EventManager();
+    private static JFrame frame;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("AddUserForm");
+        frame = new JFrame("AddUserForm");
         frame.setContentPane(new AddUserForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setSize(640, 480);
         frame.setVisible(true);

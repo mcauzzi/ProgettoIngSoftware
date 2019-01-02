@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import ModelPackage.DBManager;
+import Controller.DBManager;
 
 public class TestConsole {
 

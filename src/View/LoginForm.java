@@ -1,3 +1,5 @@
+package View;
+
 import Controller.EventManager;
 import Controller.InvalidPasswordException;
 import Controller.InvalidUserException;
@@ -17,11 +19,12 @@ public class LoginForm {
     private JButton addUser;
     private EventManager man = new EventManager();
     private AddUserForm addForm;
+    private static JFrame frame;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("LoginForm");
+        frame = new JFrame("LoginForm");
         frame.setContentPane(new LoginForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setSize(640, 480);
@@ -43,13 +46,16 @@ public class LoginForm {
                 switch (UserType.valueOf(acctType).name()) {
                     case "warehouse_worker":
 
-                        break;
+                        frame.dispose();
+                        return;
                     case "manager":
 
-                        break;
+                        frame.dispose();
+                        return;
                     case "store_manager":
 
-                        break;
+                        frame.dispose();
+                        return;
                     default:
                         showMessageDialog(null, "Tipo Di Utente Non Riconosciuto");
                 }
