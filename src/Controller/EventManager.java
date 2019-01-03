@@ -1,6 +1,10 @@
 package Controller;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -49,6 +53,26 @@ public class EventManager {
             dbMan.insert("logins", user);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void updateHistory(JTable storicoOrdini) {
+        DefaultTableModel model;
+        try {
+            ResultSet rs = dbMan.customQuery("SELECT * FROM ORDINI");
+            model = (DefaultTableModel) storicoOrdini.getModel();
+            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                model.addColumn(rs.getMetaData().getColumnName(i));
+            }
+
+            while (rs.next()) {
+
+                model.addRow(new Object[]{rs.getString("negozio"), Integer.toString(rs.getInt("codice")), rs.getDate("data").toString(),
+                        rs.getString("tipoarticolo"), Integer.toString(rs.getInt("quantita")), rs.getBigDecimal("prezzototale").toPlainString()});
+            }
+
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
     }
 }
