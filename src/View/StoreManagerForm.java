@@ -4,16 +4,10 @@ import Controller.DBManager;
 import Controller.EventManager;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class storeManagerForm {
+public class StoreManagerForm {
     private JTable storicoOrdini;
     private JPanel panel1;
     private JButton updateHistoryButton;
@@ -26,7 +20,7 @@ public class storeManagerForm {
     private JTextField textField6;
     private static DBManager dbMan;
 
-    public storeManagerForm() {
+    public StoreManagerForm() {
 
         updateHistoryButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -39,8 +33,8 @@ public class storeManagerForm {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("storeManagerForm");
-        frame.setContentPane(new storeManagerForm().panel1);
+        JFrame frame = new JFrame("StoreManagerForm");
+        frame.setContentPane(new StoreManagerForm().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
