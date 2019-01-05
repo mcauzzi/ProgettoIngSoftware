@@ -58,6 +58,7 @@ public class EventManager {
 
     public static void updateHistory(JTable storicoOrdini) {
         DefaultTableModel model;
+        storicoOrdini.setModel(new DefaultTableModel());
         try {
             ResultSet rs = dbMan.customQuery("SELECT * FROM ORDINI");
             model = (DefaultTableModel) storicoOrdini.getModel();
@@ -73,6 +74,18 @@ public class EventManager {
 
         } catch (SQLException e1) {
             e1.printStackTrace();
+        }
+    }
+
+    public static void addOrderRow(ArrayList order) throws SQLException {
+        ArrayList tuple = new ArrayList();
+
+        tuple.add(order);
+
+        try {
+            dbMan.insert("ordini", tuple);
+        } catch (Exception e) {
+            throw e;
         }
     }
 }

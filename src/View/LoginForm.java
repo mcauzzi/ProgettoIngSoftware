@@ -53,7 +53,7 @@ public class LoginForm {
                         frame.dispose();
                         return;
                     case "store_manager":
-
+                        storeManagerForm.main(null);
                         frame.dispose();
                         return;
                     default:

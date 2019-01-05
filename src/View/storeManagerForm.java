@@ -4,26 +4,26 @@ import Controller.DBManager;
 import Controller.EventManager;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class storeManagerForm {
+    public static final String INCORRECT_PRICE = "Inserire un formato di prezzo corretto";
+    public static final String INCORRECT_QUANTITY = "Inserire una quantità corretta";
     private JTable storicoOrdini;
     private JPanel panel1;
     private JButton updateHistoryButton;
     private JButton addRowButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
+    private JTextField storeField;
+    private JTextField orderCodeField;
+    private JTextField dateField;
+    private JTextField priceField;
+    private JTextField quantityField;
+    private JTextField articleTypeField;
     private static DBManager dbMan;
 
     public storeManagerForm() {
@@ -33,6 +33,37 @@ public class storeManagerForm {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
+                EventManager.updateHistory(storicoOrdini);
+            }
+        });
+        addRowButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                //TODO: ADD CHECKS
+                ArrayList order = new ArrayList();
+                order.add(storeField.getText());
+                order.add(orderCodeField.getText());
+                order.add(dateField.getText());
+                order.add(articleTypeField.getText());
+
+                try {
+                    order.add(Integer.parseInt(quantityField.getText()));
+                } catch (NumberFormatException e1) {
+                    showMessageDialog(null, INCORRECT_QUANTITY);
+                }
+
+                try {
+                    order.add(Double.parseDouble(priceField.getText()) * Integer.parseInt(quantityField.getText()));
+                } catch (NumberFormatException e1) {
+                    showMessageDialog(null, INCORRECT_PRICE);
+                }
+
+                try {
+                    EventManager.addOrderRow(order);
+                } catch (Exception e1) {
+                    showMessageDialog(null, e1.getMessage());
+                }
                 EventManager.updateHistory(storicoOrdini);
             }
         });

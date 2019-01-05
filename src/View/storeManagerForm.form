@@ -10,7 +10,7 @@
     <children>
       <scrollpane id="cb4f9">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="453" height="365"/>
           </grid>
         </constraints>
@@ -23,7 +23,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="eb4dc" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="eb4dc" class="javax.swing.JTextField" binding="orderCodeField">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -31,7 +31,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="59693" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="59693" class="javax.swing.JTextField" binding="dateField">
         <constraints>
           <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -67,7 +67,7 @@
           <text value="Quantità"/>
         </properties>
       </component>
-      <component id="f1949" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+      <component id="f1949" class="javax.swing.JTextField" binding="quantityField">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -80,10 +80,10 @@
           <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Prezzo Totale"/>
+          <text value="Prezzo Unitario"/>
         </properties>
       </component>
-      <component id="c7ee4" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="c7ee4" class="javax.swing.JTextField" binding="priceField">
         <constraints>
           <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -115,17 +115,9 @@
           <text value="Tipo Articolo"/>
         </properties>
       </component>
-      <component id="29610" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="29610" class="javax.swing.JTextField" binding="storeField">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="a8526" class="javax.swing.JTextField" binding="textField6" default-binding="true">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -138,6 +130,14 @@
         <properties>
           <text value="Negozio"/>
         </properties>
+      </component>
+      <component id="a8526" class="javax.swing.JTextField" binding="articleTypeField">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

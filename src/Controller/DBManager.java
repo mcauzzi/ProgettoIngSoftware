@@ -36,7 +36,7 @@ public class DBManager {
     }
 
     //Inserts tuples into the provided tablename
-    public void insert(String tableName, List<List> tuples) {
+    public void insert(String tableName, List<List> tuples) throws SQLException {
         try {
             List<String> colNames = new ArrayList();
             st = c.createStatement();
@@ -68,6 +68,7 @@ public class DBManager {
             st.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
