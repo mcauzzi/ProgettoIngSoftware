@@ -62,9 +62,7 @@ public class EventManager {
         try {
             ResultSet rs = dbMan.customQuery("SELECT * FROM ORDINI");
             model = (DefaultTableModel) storicoOrdini.getModel();
-            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                model.addColumn(rs.getMetaData().getColumnName(i));
-            }
+            getQueryColumns(rs, model);
 
             while (rs.next()) {
 
@@ -84,6 +82,75 @@ public class EventManager {
 
         try {
             dbMan.insert("ordini", tuple);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public static void getInsOuts(JTable inTable, JTable outTable) throws SQLException {
+        DefaultTableModel model;
+        inTable.setModel(new DefaultTableModel());
+        outTable.setModel(new DefaultTableModel());
+
+        try {
+            ResultSet rs = dbMan.customQuery("select * from ingressi");
+
+            model = (DefaultTableModel) inTable.getModel();
+
+            getQueryColumns(rs, model);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getInt("id"), rs.getDate("data"), rs.getInt("article"), rs.getInt("position")});
+            }
+
+            rs = dbMan.customQuery("select * from uscite");
+
+            model = (DefaultTableModel) outTable.getModel();
+
+            getQueryColumns(rs, model);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getDate("data"), rs.getInt("numerobolla"), rs.getInt("article"),
+                        rs.getString("Negozio"), rs.getString("spedizioniere")});
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    private static void getQueryColumns(ResultSet rs, DefaultTableModel model) throws SQLException {
+        for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+            model.addColumn(rs.getMetaData().getColumnName(i));
+        }
+    }
+
+    public static void getTypes(JTable articleTypeTable) throws SQLException {
+        DefaultTableModel model;
+        articleTypeTable.setModel(new DefaultTableModel());
+
+        try {
+            ResultSet rs = dbMan.customQuery("select * from tipiarticolo");
+
+            model = (DefaultTableModel) articleTypeTable.getModel();
+
+            getQueryColumns(rs, model);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getString("nome"), rs.getString("descrizione"),
+                        rs.getString("sport"), rs.getArray("materiali")});
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public static void insertArticleTypes(ArrayList articleTypes) throws SQLException {
+        ArrayList tuple = new ArrayList();
+
+        tuple.add(articleTypes);
+
+        try {
+            dbMan.insert("tipiarticolo", tuple);
         } catch (Exception e) {
             throw e;
         }

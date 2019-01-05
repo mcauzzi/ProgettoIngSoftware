@@ -39,7 +39,6 @@ public class StoreManagerForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //TODO: ADD CHECKS
                 ArrayList order = new ArrayList();
                 order.add(storeField.getText());
                 order.add(orderCodeField.getText());
@@ -71,7 +70,7 @@ public class StoreManagerForm {
     public static void main(String[] args) {
         JFrame frame = new JFrame("storeManagerForm");
         frame.setContentPane(new StoreManagerForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setSize(1024, 768);
