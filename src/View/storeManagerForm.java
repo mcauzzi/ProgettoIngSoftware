@@ -6,12 +6,11 @@ import Controller.EventManager;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class storeManagerForm {
+public class StoreManagerForm {
     public static final String INCORRECT_PRICE = "Inserire un formato di prezzo corretto";
     public static final String INCORRECT_QUANTITY = "Inserire una quantità corretta";
     private JTable storicoOrdini;
@@ -26,7 +25,7 @@ public class storeManagerForm {
     private JTextField articleTypeField;
     private static DBManager dbMan;
 
-    public storeManagerForm() {
+    public StoreManagerForm() {
 
         updateHistoryButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -71,7 +70,7 @@ public class storeManagerForm {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("storeManagerForm");
-        frame.setContentPane(new storeManagerForm().panel1);
+        frame.setContentPane(new StoreManagerForm().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -1,4 +1,4 @@
 package View;
 
-public class managerForm {
+public class ManagerForm {
 }
