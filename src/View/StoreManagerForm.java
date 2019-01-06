@@ -6,6 +6,7 @@ import Controller.EventManager;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -32,7 +33,11 @@ public class StoreManagerForm {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
-                EventManager.updateHistory(storicoOrdini);
+                try {
+                    EventManager.updateHistory(storicoOrdini);
+                } catch (SQLException e1) {
+                    showMessageDialog(null, e1.getMessage());
+                }
             }
         });
         addRowButton.addMouseListener(new MouseAdapter() {
@@ -40,29 +45,20 @@ public class StoreManagerForm {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 ArrayList order = new ArrayList();
-                order.add(storeField.getText());
-                order.add(orderCodeField.getText());
-                order.add(dateField.getText());
-                order.add(articleTypeField.getText());
 
                 try {
+                    order.add(storeField.getText());
+                    order.add(orderCodeField.getText());
+                    order.add(dateField.getText());
+                    order.add(articleTypeField.getText());
                     order.add(Integer.parseInt(quantityField.getText()));
-                } catch (NumberFormatException e1) {
-                    showMessageDialog(null, INCORRECT_QUANTITY);
-                }
-
-                try {
                     order.add(Double.parseDouble(priceField.getText()) * Integer.parseInt(quantityField.getText()));
-                } catch (NumberFormatException e1) {
-                    showMessageDialog(null, INCORRECT_PRICE);
-                }
 
-                try {
                     EventManager.addOrderRow(order);
+                    EventManager.updateHistory(storicoOrdini);
                 } catch (Exception e1) {
                     showMessageDialog(null, e1.getMessage());
                 }
-                EventManager.updateHistory(storicoOrdini);
             }
         });
     }

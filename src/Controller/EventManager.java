@@ -56,7 +56,7 @@ public class EventManager {
         }
     }
 
-    public static void updateHistory(JTable storicoOrdini) {
+    public static void updateHistory(JTable storicoOrdini) throws SQLException {
         DefaultTableModel model;
         storicoOrdini.setModel(new DefaultTableModel());
         try {
@@ -71,7 +71,7 @@ public class EventManager {
             }
 
         } catch (SQLException e1) {
-            e1.printStackTrace();
+            throw e1;
         }
     }
 
@@ -93,14 +93,17 @@ public class EventManager {
         outTable.setModel(new DefaultTableModel());
 
         try {
-            ResultSet rs = dbMan.customQuery("select * from ingressi");
+            ResultSet rs = null;
+            if (inTable != null) {
+                rs = dbMan.customQuery("select * from ingressi");
 
-            model = (DefaultTableModel) inTable.getModel();
+                model = (DefaultTableModel) inTable.getModel();
 
-            getQueryColumns(rs, model);
+                getQueryColumns(rs, model);
 
-            while (rs.next()) {
-                model.addRow(new Object[]{rs.getInt("id"), rs.getDate("data"), rs.getInt("article"), rs.getInt("position")});
+                while (rs.next()) {
+                    model.addRow(new Object[]{rs.getInt("id"), rs.getDate("data"), rs.getInt("article"), rs.getInt("position")});
+                }
             }
 
             rs = dbMan.customQuery("select * from uscite");
@@ -152,6 +155,18 @@ public class EventManager {
         try {
             dbMan.insert("tipiarticolo", tuple);
         } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public static void insertIns(ArrayList ins) throws SQLException {
+        ArrayList tuple = new ArrayList();
+
+        tuple.add(ins);
+
+        try {
+            dbMan.insert("ingressi", tuple);
+        } catch (SQLException e) {
             throw e;
         }
     }
