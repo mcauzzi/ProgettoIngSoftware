@@ -113,8 +113,8 @@ public class EventManager {
             getQueryColumns(rs, model);
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getDate("data"), rs.getInt("numerobolla"), rs.getInt("article"),
-                        rs.getString("Negozio"), rs.getString("spedizioniere")});
+                model.addRow(new Object[]{rs.getDate("data"), rs.getInt("numerobolla"),
+                        rs.getString("Negozio"), rs.getString("spedizioniere"), rs.getInt("ordine")});
             }
         } catch (Exception e) {
             throw e;
@@ -169,5 +169,23 @@ public class EventManager {
         } catch (SQLException e) {
             throw e;
         }
+    }
+
+    public static void insertOuts(ArrayList out) throws SQLException {
+        ArrayList tuple = new ArrayList();
+
+        tuple.add(out);
+
+        try {
+            dbMan.insert("uscite", tuple);
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void updatePosition(String id, String newPosition) throws SQLException {
+        String query = "UPDATE ingressi SET position=" + newPosition + "WHERE id= " + id;
+
+        dbMan.customQuery(query);
     }
 }

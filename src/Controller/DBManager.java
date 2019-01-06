@@ -73,17 +73,10 @@ public class DBManager {
     }
 
     //Executes a custom query and returns its ResultSet
-    public ResultSet customQuery(String query) {
-        try {
-            st = c.createStatement();
-            st.execute(query);
-            return st.getResultSet();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
-
+    public ResultSet customQuery(String query) throws SQLException {
+        st = c.createStatement();
+        st.execute(query);
+        return st.getResultSet();
     }
 
     void remove(String DBName, List<List> tuples) {

@@ -3,8 +3,6 @@ package View;
 import Controller.EventManager;
 
 import javax.swing.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -18,19 +16,19 @@ public class WarehouseWorkerForm {
     private JTextField articleField;
     private JTextField positionField;
     private JButton insertInButton;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
-    private JTextField textField8;
+    private JTextField outDateField;
+    private JTextField noteField;
+    private JTextField storeField;
     private JButton insertOutButton;
     private JTable outTable;
-    private JTextField textField9;
-    private JTextField textField10;
-    private JButton changePosizionButton;
-    private JTextField textField11;
+    private JTextField positionIdField;
+    private JTextField newPositionField;
+    private JButton changePositionButton;
+    private JTextField shipperField;
     private JPanel panel;
     private JTable inTable;
     private JTable orderTable;
+    private JTextField orderField;
 
     public WarehouseWorkerForm() {
         try {
@@ -63,12 +61,32 @@ public class WarehouseWorkerForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                ArrayList out = new ArrayList();
+                try {
+                    out.add(outDateField.getText());
+                    out.add(Integer.parseInt(noteField.getText()));
+                    out.add(storeField.getText());
+                    out.add(shipperField.getText());
+                    out.add(orderField.getText());
+                    EventManager.insertOuts(out);
+
+                    EventManager.getInsOuts(inTable, outTable);
+                } catch (Exception e1) {
+                    showMessageDialog(null, e1.getMessage());
+                }
             }
         });
-        changePosizionButton.addMouseListener(new MouseAdapter() {
+        changePositionButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
+                try {
+                    EventManager.updatePosition(positionIdField.getText(), newPositionField.getText());
+                    EventManager.getInsOuts(inTable, outTable);
+                } catch (SQLException e1) {
+                    showMessageDialog(null, e1.getMessage());
+                }
             }
         });
     }
