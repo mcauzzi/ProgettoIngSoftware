@@ -45,11 +45,11 @@ public class LoginForm {
 
                 switch (UserType.valueOf(acctType).name()) {
                     case "warehouse_worker":
-
+                        WarehouseWorkerForm.main(null);
                         frame.dispose();
                         return;
                     case "manager":
-
+                        ManagerForm.main(null);
                         frame.dispose();
                         return;
                     case "store_manager":

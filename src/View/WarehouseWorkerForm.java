@@ -97,5 +97,6 @@ public class WarehouseWorkerForm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.setSize(1280, 1024);
     }
 }
