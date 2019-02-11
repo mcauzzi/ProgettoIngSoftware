@@ -24,7 +24,6 @@ public class StoreManagerForm {
     private JTextField priceField;
     private JTextField quantityField;
     private JTextField articleTypeField;
-    private static DBManager dbMan;
 
     public StoreManagerForm() {
 
@@ -70,7 +69,6 @@ public class StoreManagerForm {
         frame.pack();
         frame.setVisible(true);
         frame.setSize(1024, 768);
-        dbMan = new DBManager();
     }
 
 
