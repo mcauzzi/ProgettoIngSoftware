@@ -29,6 +29,9 @@ public class WarehouseWorkerForm {
     private JTable inTable;
     private JTable orderTable;
     private JTextField orderField;
+    private JLabel exitsLabel;
+    private JLabel orderLabel;
+    private JLabel entryLabel;
 
     public WarehouseWorkerForm() {
         try {

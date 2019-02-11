@@ -15,6 +15,7 @@ public class EventManager {
     private static DBManager dbMan = new DBManager();
     private static PasswordEncryptionService passEnc = new PasswordEncryptionService();
 
+    //Esegue il comando di login
     public static String loginClick(String username, char[] passwordField1Text) throws Exception, InvalidUserException, InvalidPasswordException {
         String salt;
         String password;
@@ -37,6 +38,7 @@ public class EventManager {
         throw new InvalidUserException("Utente Non Esistente");
     }
 
+    //Aggiunge un utente all'applicazione
     public static void addUserClick(String username, char[] password, String userType) {
         List<List> user = new ArrayList<>();
         user.add(new ArrayList<>());
@@ -56,6 +58,7 @@ public class EventManager {
         }
     }
 
+    //Riceve i dati dalla tabelle ordini li insersice in storicoOrdini
     public static void updateHistory(JTable storicoOrdini) throws SQLException {
         DefaultTableModel model;
         storicoOrdini.setModel(new DefaultTableModel());
@@ -75,6 +78,7 @@ public class EventManager {
         }
     }
 
+    //Aggiunge order alla tabella ordini
     public static void addOrderRow(ArrayList order) throws SQLException {
         ArrayList tuple = new ArrayList();
 
@@ -87,6 +91,7 @@ public class EventManager {
         }
     }
 
+    //Riceve i date dalle tabelle entrate ed uscite e le inserisce in inTable e in outTable
     public static void getInsOuts(JTable inTable, JTable outTable) throws SQLException {
         DefaultTableModel model;
         inTable.setModel(new DefaultTableModel());
@@ -121,12 +126,14 @@ public class EventManager {
         }
     }
 
+    //Aggiunge le colonne di rs al model
     private static void getQueryColumns(ResultSet rs, DefaultTableModel model) throws SQLException {
         for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
             model.addColumn(rs.getMetaData().getColumnName(i));
         }
     }
 
+    //Inserisce i tipi degli articoli in articleTypeTable
     public static void getTypes(JTable articleTypeTable) throws SQLException {
         DefaultTableModel model;
         articleTypeTable.setModel(new DefaultTableModel());
@@ -147,6 +154,7 @@ public class EventManager {
         }
     }
 
+    //Inserisce articleTypes nella tabella articoli
     public static void insertArticleTypes(ArrayList articleTypes) throws SQLException {
         ArrayList tuple = new ArrayList();
 
@@ -159,6 +167,7 @@ public class EventManager {
         }
     }
 
+    //Aggiunge un entrata alla tabella entrate
     public static void insertIns(ArrayList ins) throws SQLException {
         ArrayList tuple = new ArrayList();
 
@@ -171,6 +180,7 @@ public class EventManager {
         }
     }
 
+    //Aggiunge un uscita alla tabella uscite
     public static void insertOuts(ArrayList out) throws SQLException {
         ArrayList tuple = new ArrayList();
 
@@ -183,6 +193,7 @@ public class EventManager {
         }
     }
 
+    //Aggiorna la posizione di un articolo
     public static void updatePosition(String id, String newPosition) throws SQLException {
         String query = "UPDATE ingressi SET position=" + newPosition + "WHERE id= " + id;
 
