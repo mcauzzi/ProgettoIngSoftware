@@ -2,6 +2,7 @@ package View;
 
 import Controller.DBManager;
 import Controller.EventManager;
+import Controller.QuantityException;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -55,7 +56,7 @@ public class StoreManagerForm {
 
                     EventManager.addOrderRow(order);
                     EventManager.updateHistory(storicoOrdini);
-                } catch (Exception e1) {
+                } catch (Exception | QuantityException e1) {
                     showMessageDialog(null, e1.getMessage());
                 }
             }

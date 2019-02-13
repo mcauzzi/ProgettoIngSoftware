@@ -79,9 +79,18 @@ public class EventManager {
     }
 
     //Aggiunge order alla tabella ordini
-    public static void addOrderRow(ArrayList order) throws SQLException {
+    public static void addOrderRow(ArrayList order) throws SQLException, QuantityException {
         ArrayList tuple = new ArrayList();
+        ResultSet rs = dbMan.customQuery("SELECT COUNT(*)quantita\n" +
+                "FROM ingressi\n" +
+                "WHERE article=" + order.get(3) + "\n" +
+                "GROUP BY article");
 
+        rs.next();
+
+        if (Integer.parseInt(order.get(4).toString()) > rs.getInt("quantita")) {
+            throw new QuantityException("Quantita in magazzino insufficente");
+        }
         tuple.add(order);
 
         try {
