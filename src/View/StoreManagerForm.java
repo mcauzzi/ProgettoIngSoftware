@@ -1,6 +1,5 @@
 package View;
 
-import Controller.DBManager;
 import Controller.EventManager;
 import Controller.QuantityException;
 
