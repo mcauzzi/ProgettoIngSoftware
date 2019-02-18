@@ -16,8 +16,6 @@ public class LoginForm {
     private JPasswordField passwordField1;
     private JTextField userNameField;
     private JButton loginButton;
-    private JButton addUser;
-    private AddUserForm addForm;
     private static JFrame frame;
 
     public static void main(String[] args) {
@@ -58,15 +56,6 @@ public class LoginForm {
                     default:
                         showMessageDialog(null, "Tipo Di Utente Non Riconosciuto");
                 }
-            }
-        });
-
-        addUser.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                addForm = new AddUserForm();
-                AddUserForm.main(null);
             }
         });
     }

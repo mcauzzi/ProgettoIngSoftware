@@ -15,7 +15,6 @@ public class AddUserForm {
     private JLabel usernameLabel;
     private JComboBox userTypeBox;
     private JLabel typeLabel;
-    private EventManager eventMan = new EventManager();
     private static JFrame frame;
 
     public static void main(String[] args) {
@@ -40,7 +39,7 @@ public class AddUserForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                eventMan.addUserClick(usernameField.getText(), passwordField1.getPassword(), userTypeBox.getSelectedItem().toString());
+                EventManager.addUserClick(usernameField.getText(), passwordField1.getPassword(), userTypeBox.getSelectedItem().toString());
             }
         });
     }
