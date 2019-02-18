@@ -17,7 +17,6 @@ public class LoginForm {
     private JTextField userNameField;
     private JButton loginButton;
     private JButton addUser;
-    private EventManager man = new EventManager();
     private AddUserForm addForm;
     private static JFrame frame;
 

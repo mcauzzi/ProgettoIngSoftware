@@ -25,6 +25,8 @@ public class ManagerForm {
     private JTextField sportField;
     private JTextField materialsField;
     private JButton inserisciTipoDiMaterialeButton;
+    private JButton addUser;
+    private AddUserForm addForm;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ManagerForm");
@@ -78,6 +80,14 @@ public class ManagerForm {
                 } catch (SQLException e1) {
                     showMessageDialog(null, e1.getMessage());
                 }
+            }
+        });
+        addUser.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                addForm = new AddUserForm();
+                AddUserForm.main(null);
             }
         });
     }
