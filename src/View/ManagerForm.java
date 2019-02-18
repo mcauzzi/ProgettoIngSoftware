@@ -28,15 +28,6 @@ public class ManagerForm {
     private JButton addUser;
     private AddUserForm addForm;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ManagerForm");
-        frame.setContentPane(new ManagerForm().panel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setSize(1280, 1024);
-    }
-
     public ManagerForm() {
         getMovementsButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -90,5 +81,14 @@ public class ManagerForm {
                 AddUserForm.main(null);
             }
         });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("ManagerForm");
+        frame.setContentPane(new ManagerForm().panel);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(1280, 1024);
     }
 }

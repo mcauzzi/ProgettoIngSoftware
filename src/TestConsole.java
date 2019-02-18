@@ -1,14 +1,14 @@
+import Controller.DBManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import Controller.DBManager;
-
 public class TestConsole {
 
-	public static void main(String[] args) {
-		DBManager dbm = new DBManager();
-		List<List> tuples=new ArrayList();
-	}
+    public static void main(String[] args) {
+        DBManager dbm = new DBManager();
+        List<List> tuples = new ArrayList();
+    }
 
 }
 

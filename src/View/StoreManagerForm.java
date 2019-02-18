@@ -54,13 +54,13 @@ public class StoreManagerForm {
 
                     EventManager.addOrderRow(order);
                     EventManager.updateHistory(storicoOrdini);
-                } catch (Exception | QuantityException e1) {
+                } catch (Exception e1) {
                     showMessageDialog(null, e1.getMessage());
                 }
             }
         });
 
-        }
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("storeManagerForm");

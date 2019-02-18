@@ -11,8 +11,8 @@ import java.util.List;
 
 
 public class EventManager {
-    private static DBManager dbMan = new DBManager();
-    private static PasswordEncryptionService passEnc = new PasswordEncryptionService();
+    private static final DBManager dbMan = new DBManager();
+    private static final PasswordEncryptionService passEnc = new PasswordEncryptionService();
 
     //Esegue il comando di login
     public static String loginClick(String username, char[] passwordField1Text) throws Exception, InvalidUserException, InvalidPasswordException {
@@ -78,7 +78,7 @@ public class EventManager {
     }
 
     //Aggiunge order alla tabella ordini
-    public static void addOrderRow(ArrayList order) throws SQLException, QuantityException {
+    public static void addOrderRow(ArrayList order) throws SQLException {
         ArrayList tuple = new ArrayList();
 
 

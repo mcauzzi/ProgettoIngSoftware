@@ -12,20 +12,11 @@ import java.awt.event.MouseEvent;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class LoginForm {
+    private static JFrame frame;
     private JPanel panel1;
     private JPasswordField passwordField1;
     private JTextField userNameField;
     private JButton loginButton;
-    private static JFrame frame;
-
-    public static void main(String[] args) {
-        frame = new JFrame("LoginForm");
-        frame.setContentPane(new LoginForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setSize(640, 480);
-    }
 
     public LoginForm() {
         loginButton.addMouseListener(new MouseAdapter() {
@@ -58,5 +49,14 @@ public class LoginForm {
                 }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        frame = new JFrame("LoginForm");
+        frame.setContentPane(new LoginForm().panel1);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(640, 480);
     }
 }
