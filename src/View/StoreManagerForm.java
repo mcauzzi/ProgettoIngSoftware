@@ -21,7 +21,6 @@ public class StoreManagerForm {
     private JTextField storeField;
     private JTextField orderCodeField;
     private JTextField dateField;
-    private JTextField priceField;
     private JTextField quantityField;
     private JTextField articleTypeField;
 
@@ -51,7 +50,7 @@ public class StoreManagerForm {
                     order.add(dateField.getText());
                     order.add(articleTypeField.getText());
                     order.add(Integer.parseInt(quantityField.getText()));
-                    order.add(Double.parseDouble(priceField.getText()) * Integer.parseInt(quantityField.getText()));
+                    //order.add(Double.parseDouble(priceField.getText()) * Integer.parseInt(quantityField.getText()));
 
                     EventManager.addOrderRow(order);
                     EventManager.updateHistory(storicoOrdini);

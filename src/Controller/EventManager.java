@@ -2,6 +2,7 @@ package Controller;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -79,16 +80,13 @@ public class EventManager {
     //Aggiunge order alla tabella ordini
     public static void addOrderRow(ArrayList order) throws SQLException, QuantityException {
         ArrayList tuple = new ArrayList();
-        ResultSet rs = dbMan.customQuery("SELECT COUNT(*)quantita\n" +
-                "FROM ingressi\n" +
-                "WHERE article=" + order.get(3) + "\n" +
-                "GROUP BY article");
 
+
+        ResultSet rs = dbMan.customQuery("SELECT a.prezzo\n" +
+                "FROM articolo a JOIN tipiarticolo t on a.tipoarticolo=t.nome\n" +
+                "WHERE a.tipoarticolo='" + order.get(3) + "'");
         rs.next();
-
-        if (Integer.parseInt(order.get(4).toString()) > rs.getInt("quantita")) {
-            throw new QuantityException("Quantita in magazzino insufficente");
-        }
+        order.add(rs.getBigDecimal(1).multiply(new BigDecimal((int) order.get(4))));
         tuple.add(order);
 
         try {
@@ -188,9 +186,20 @@ public class EventManager {
     }
 
     //Aggiunge un uscita alla tabella uscite
-    public static void insertOuts(ArrayList out) throws SQLException {
+    public static void insertOuts(ArrayList out) throws SQLException, QuantityException {
         ArrayList tuple = new ArrayList();
+        ResultSet rs = dbMan.customQuery("SELECT COUNT(i.*) >= o.quantita\n" +
+                "FROM ingressi i\n" +
+                "       JOIN articolo a ON a.codice = i.article\n" +
+                "       join ordini o on o.tipoarticolo = a.tipoarticolo\n" +
+                "where o.codice =" + out.get(4) + "\n" +
+                "GROUP BY o.quantita");
 
+        rs.next();
+
+        if (!rs.getBoolean(1)) {
+            throw new QuantityException("Quantita in magazzino insufficente");
+        }
         tuple.add(out);
 
         try {
