@@ -3,6 +3,7 @@ package View;
 import Controller.EventManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -26,6 +27,9 @@ public class ManagerForm {
     private JTextField materialsField;
     private JButton inserisciTipoDiMaterialeButton;
     private JButton addUser;
+    private JTextField priceField;
+    private JTextField productionDateField;
+    private JLabel productionDateLabel;
     private AddUserForm addForm;
 
     public ManagerForm() {
@@ -65,9 +69,13 @@ public class ManagerForm {
 
                 String[] materialsArray = materialsField.getText().split(",");
                 articleTypes.add("{" + String.join(",", materialsArray) + "}");
+                articleTypes.add(priceField.getText());
+                articleTypes.add(productionDateField.getText());
+
 
                 try {
                     EventManager.insertArticleTypes(articleTypes);
+                    EventManager.getTypes(articleTypeTable);
                 } catch (SQLException e1) {
                     showMessageDialog(null, e1.getMessage());
                 }

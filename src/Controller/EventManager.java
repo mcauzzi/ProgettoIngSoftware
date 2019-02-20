@@ -163,10 +163,12 @@ public class EventManager {
     public static void insertArticleTypes(ArrayList articleTypes) throws SQLException {
         ArrayList tuple = new ArrayList();
 
-        tuple.add(articleTypes);
+        tuple.add(articleTypes.subList(0, 4));
 
         try {
             dbMan.insert("tipiarticolo", tuple);
+            dbMan.customQuery("INSERT INTO articolo ( tipoarticolo, prezzo, dataproduzione)\n" +
+                    "VALUES  ('" + articleTypes.get(0) + "', " + articleTypes.get(4) + ", '" + articleTypes.get(5) + "')");
         } catch (Exception e) {
             throw e;
         }
