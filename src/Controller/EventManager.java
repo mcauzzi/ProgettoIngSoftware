@@ -67,7 +67,6 @@ public class EventManager {
             getQueryColumns(rs, model);
 
             while (rs.next()) {
-
                 model.addRow(new Object[]{rs.getString("negozio"), Integer.toString(rs.getInt("codice")), rs.getDate("data").toString(),
                         rs.getString("tipoarticolo"), Integer.toString(rs.getInt("quantita")), rs.getBigDecimal("prezzototale").toPlainString()});
             }
@@ -80,7 +79,6 @@ public class EventManager {
     //Aggiunge order alla tabella ordini
     public static void addOrderRow(ArrayList order) throws SQLException {
         ArrayList tuple = new ArrayList();
-
 
         ResultSet rs = dbMan.customQuery("SELECT a.prezzo\n" +
                 "FROM articolo a JOIN tipiarticolo t on a.tipoarticolo=t.nome\n" +
@@ -138,7 +136,7 @@ public class EventManager {
         }
     }
 
-    //Inserisce i tipi degli articoli in articleTypeTable
+    //Acquisice i tipi degli articoli in articleTypeTable
     public static void getTypes(JTable articleTypeTable) throws SQLException {
         DefaultTableModel model;
         articleTypeTable.setModel(new DefaultTableModel());
