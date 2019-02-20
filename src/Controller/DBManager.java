@@ -68,6 +68,7 @@ public class DBManager {
             st.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
+            c.rollback();
             throw e;
         }
     }
@@ -120,8 +121,6 @@ public class DBManager {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
         return tuples;
     }
 }
